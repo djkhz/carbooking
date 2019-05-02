@@ -71,12 +71,14 @@ class View extends \Gcms\View
             $headers[$type] = array(
                 'text' => $text,
                 'class' => 'center',
+                'sort' => $text,
             );
             $cols[$type] = array('class' => 'center');
         }
         $headers['seats'] = array(
             'text' => '{LNG_Number of seats}',
             'class' => 'center',
+            'sort' => 'seats',
         );
         $cols['seats'] = array('class' => 'center');
         // URL สำหรับส่งให้ตาราง

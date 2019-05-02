@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 27, 2019 at 10:19 AM
+-- Generation Time: Mar 31, 2019 at 03:13 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.0.32
 
@@ -27,39 +27,6 @@ CREATE TABLE `{prefix}_language` (
 
 -- --------------------------------------------------------
 --
--- Table structure for table `{prefix}_car_reservation`
---
-
-CREATE TABLE `{prefix}_car_reservation` (
-  `id` int(11) NOT NULL,
-  `vehicle_id` int(11) NOT NULL,
-  `member_id` int(11) NOT NULL,
-  `create_date` datetime DEFAULT NULL,
-  `detail` text COLLATE utf8_unicode_ci NOT NULL,
-  `chauffeur` int(11) NOT NULL,
-  `comment` text COLLATE utf8_unicode_ci,
-  `travelers` int(11) NOT NULL,
-  `begin` datetime DEFAULT NULL,
-  `end` datetime DEFAULT NULL,
-  `status` tinyint(1) NOT NULL,
-  `reason` text COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `{prefix}_car_reservation_data`
---
-
-CREATE TABLE `{prefix}_car_reservation_data` (
-  `reservation_id` int(11) NOT NULL,
-  `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `value` varchar(150) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `{prefix}_category`
 --
 
@@ -69,7 +36,7 @@ CREATE TABLE `{prefix}_category` (
   `category_id` int(11) NOT NULL,
   `topic` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `color` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `published` tinyint(1) NOT NULL DEFAULT '1'
+  `published` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -106,6 +73,40 @@ INSERT INTO `{prefix}_category` (`id`, `type`, `category_id`, `topic`, `color`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `{prefix}_car_reservation`
+--
+
+CREATE TABLE `{prefix}_car_reservation` (
+  `id` int(11) NOT NULL,
+  `vehicle_id` int(11) NOT NULL,
+  `member_id` int(11) NOT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `detail` text COLLATE utf8_unicode_ci NOT NULL,
+  `chauffeur` int(11) NOT NULL,
+  `comment` text COLLATE utf8_unicode_ci,
+  `travelers` int(11) NOT NULL,
+  `begin` datetime DEFAULT NULL,
+  `end` datetime DEFAULT NULL,
+  `status` tinyint(1) NOT NULL,
+  `reason` text COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `{prefix}_car_reservation_data`
+--
+
+CREATE TABLE `{prefix}_car_reservation_data` (
+  `reservation_id` int(11) NOT NULL,
+  `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `value` varchar(150) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+
+--
 -- Table structure for table `{prefix}_user`
 --
 
@@ -140,7 +141,7 @@ CREATE TABLE `{prefix}_user` (
 --
 
 INSERT INTO `{prefix}_user` (`id`, `username`, `salt`, `password`, `token`, `status`, `permission`, `name`, `sex`, `id_card`, `address`, `phone`, `provinceID`, `zipcode`, `visited`, `lastvisited`, `session_id`, `ip`, `create_date`, `active`, `social`) VALUES
-(1, 'admin@localhost', '5c218d7d9ea4b', '6a397c750a3046e8b9873e9b7dd517bd070ba79c', NULL, 1, ',can_config,can_manage_car,can_approve_car,', 'แอดมิน', 'm', '', '1 หมู่ 1 ตำบล ลาดหญ้า อำเภอ เมือง', '08080808', '102', '71190', 0, 0, '', '::1', NOW(), 1, 0),
+(1, 'admin@localhost', '5c218d7d9ea4b', '6a397c750a3046e8b9873e9b7dd517bd070ba79c', NULL, 1, ',can_config,', 'แอดมิน', 'm', '', '1 หมู่ 1 ตำบล ลาดหญ้า อำเภอ เมือง', '08080808', '102', '71190', 0, 0, '', '::1', NOW(), 1, 0),
 (2, 'demo@localhost', '5c13b4c610781', 'd61303ebed15f6448dd3ebadd7e416b5350b4d1d', NULL, 0, '', 'ตัวอย่าง', 'f', '', '', '0123456788', '102', '', 0, 0, '', '::1', NOW(), 1, 0);
 
 -- --------------------------------------------------------
@@ -168,6 +169,26 @@ INSERT INTO `{prefix}_vehicles` (`id`, `number`, `color`, `detail`, `published`,
 (3, 'กข 1234', '#B71C1C', '', 1, 4);
 
 -- --------------------------------------------------------
+--
+-- Indexes for table `{prefix}_category`
+--
+ALTER TABLE `{prefix}_category`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `type` (`type`),
+  ADD KEY `category_id` (`category_id`);
+
+--
+-- Indexes for table `{prefix}_language`
+--
+ALTER TABLE `{prefix}_language`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `{prefix}_user`
+--
+ALTER TABLE `{prefix}_user`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `username` (`username`);
 
 --
 -- Table structure for table `{prefix}_vehicles_meta`
@@ -191,9 +212,6 @@ INSERT INTO `{prefix}_vehicles_meta` (`vehicle_id`, `name`, `value`) VALUES
 (1, 'car_brand', '8'),
 (1, 'car_type', '9');
 
---
--- Indexes for dumped tables
---
 
 --
 -- Indexes for table `{prefix}_car_reservation`
@@ -208,27 +226,6 @@ ALTER TABLE `{prefix}_car_reservation_data`
   ADD KEY `reservation_id` (`reservation_id`) USING BTREE;
 
 --
--- Indexes for table `{prefix}_category`
---
-ALTER TABLE `{prefix}_category`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `type` (`type`),
-  ADD KEY `category_id` (`category_id`);
-
---
--- Indexes for table `{prefix}_language`
---
-ALTER TABLE `{prefix}_language`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `{prefix}_user`
---
-ALTER TABLE `{prefix}_user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
-
---
 -- Indexes for table `{prefix}_vehicles`
 --
 ALTER TABLE `{prefix}_vehicles`
@@ -241,25 +238,29 @@ ALTER TABLE `{prefix}_vehicles_meta`
   ADD KEY `room_id` (`vehicle_id`) USING BTREE;
 
 --
--- AUTO_INCREMENT for table `{prefix}_car_reservation`
---
-ALTER TABLE `{prefix}_car_reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `{prefix}_category`
 --
 ALTER TABLE `{prefix}_category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `{prefix}_language`
 --
 ALTER TABLE `{prefix}_language`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `{prefix}_user`
 --
 ALTER TABLE `{prefix}_user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `{prefix}_car_reservation`
+--
+ALTER TABLE `{prefix}_car_reservation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `{prefix}_vehicles`
 --
