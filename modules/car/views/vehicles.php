@@ -108,7 +108,6 @@ class View extends \Gcms\View
             'buttons' => array(
                 'car' => array(
                     'class' => 'icon-valid button blue',
-                    //'href' => 'index.php?module=car-car&amp;vehicle_id=:id',
                     'id' => ':id',
                     'text' => '{LNG_Book a vehicle}',
                 ),

@@ -31,7 +31,7 @@ class View extends \Gcms\View
      */
     public function vehicle($index)
     {
-        $content = '<article class="car_detail">';
+        $content = '<article class="modal_detail">';
         $content .= '<header><h1 class="cuttext">{LNG_Details of} {LNG_Car}</h1></header>';
         if (is_file(ROOT_PATH.DATA_FOLDER.'car/'.$index->id.'.jpg')) {
             $content .= '<figure class="center"><img src="'.WEB_URL.DATA_FOLDER.'car/'.$index->id.'.jpg"></figure>';
@@ -61,7 +61,7 @@ class View extends \Gcms\View
     public function bookDetail($index)
     {
         $category = \Car\Category\Model::init();
-        $content = '<article class="car_detail">';
+        $content = '<article class="modal_detail">';
         $content .= '<header><h1 class="cuttext">{LNG_Details of} {LNG_Booking}</h1></header>';
         $content .= '<table class="border data fullwidth"><tbody>';
         $content .= '<tr><th>{LNG_Vehicle usage details}</th><td>'.$index->detail.'</td></tr>';

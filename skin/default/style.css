@@ -676,18 +676,18 @@ header .inline {
   width: 2em;
   text-align: center;
 }
-.car_detail h1 {
+.modal_detail h1 {
   font-size: 1.5em;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 }
-.car_detail table td {
+.modal_detail table td {
   text-align: right;
 }
-.car_detail table tbody th {
+.modal_detail table tbody th {
   font-weight: bold;
   text-align: left;
 }
-.car_detail .bg {
+.modal_detail .bg {
   background-color: #f5f5f5;
 }
 
