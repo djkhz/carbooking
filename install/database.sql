@@ -91,8 +91,6 @@ CREATE TABLE `{prefix}_car_reservation` (
   `reason` text COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- --------------------------------------------------------
-
 --
 -- Table structure for table `{prefix}_car_reservation_data`
 --
