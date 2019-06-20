@@ -225,7 +225,7 @@ Calendar.prototype = {
       self = this;
     forEach(this.events, function() {
       if (this.start) {
-        a = new Date(this.start);
+        a = new Date(this.start.split('T')[0].replace(/-/g, '/'));
         diff_next = a.compare(self.next_day_of_calendar);
         if (diff_next.days >= -42 || this.end) {
           diff_start = a.compare(self.first_day_of_calendar);
@@ -239,14 +239,14 @@ Calendar.prototype = {
             }
           }
           if (a && this.end) {
-            diff = new Date(this.end).compare(new Date(start_date));
+            diff = new Date(this.end.split('T')[0].replace(/-/g, '/')).compare(new Date(start_date.split('T')[0].replace(/-/g, '/')));
             if (diff_start.days < 0) {
               diff.days--;
             }
             if (diff.days > 0) {
               elems = [a];
               top = a.offsetTop;
-              start = Date.parse(start_date);
+              start = Date.parse(start_date.replace(/-/g, '/'));
               for (var i = 1; i <= diff.days; i++) {
                 d = new Date(start + i * 86400000);
                 a = self._addLabel(d, this, false);

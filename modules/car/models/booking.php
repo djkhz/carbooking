@@ -140,7 +140,7 @@ class Model extends \Kotchasan\Model
                     if ($end_date.$end_time > $begin_date.$begin_time) {
                         $save['begin'] = $begin_date.' '.$begin_time;
                         $save['end'] = $end_date.' '.$end_time;
-                        // ตรวจสอบห้องว่าง
+                        // ตรวจสอบรถว่าง
                         if (!\Car\Checker\Model::availability($save)) {
                             $ret['ret_begin_date'] = Language::get('Vehicles cannot be used at the selected time');
                         }

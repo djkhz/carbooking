@@ -22,8 +22,8 @@ use Kotchasan\Database\Sql;
 class Model
 {
     /**
-     * ตรวจสอบห้องว่าง
-     * คืนค่า true ถ้าห้องว่าง
+     * ตรวจสอบรถว่าง
+     * คืนค่า true ถ้ารถว่าง
      * ไม่ว่าง คืนค่า false.
      *
      * @param array $save
