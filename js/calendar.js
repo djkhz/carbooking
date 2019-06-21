@@ -225,28 +225,28 @@ Calendar.prototype = {
       self = this;
     forEach(this.events, function() {
       if (this.start) {
-        a = new Date(this.start.split('T')[0].replace(/-/g, '/'));
+        start_date = this.start.split('T')[0].replace(/-/g, '/');
+        a = new Date(start_date);
         diff_next = a.compare(self.next_day_of_calendar);
         if (diff_next.days >= -42 || this.end) {
           diff_start = a.compare(self.first_day_of_calendar);
-          start_date = this.start;
           if (diff_next.days >= -42) {
             if (diff_start.days < 0) {
               a = self._addLabel(self.first_day_of_calendar, this, true);
-              start_date = self.first_day_of_calendar.format("y-m-d H:i:s");
+              start_date = self.first_day_of_calendar.format("y/m/d H:i:s");
             } else {
               a = self._addLabel(a, this, true);
             }
           }
           if (a && this.end) {
-            diff = new Date(this.end.split('T')[0].replace(/-/g, '/')).compare(new Date(start_date.split('T')[0].replace(/-/g, '/')));
+            diff = new Date(this.end.split('T')[0].replace(/-/g, '/')).compare(new Date(start_date));
             if (diff_start.days < 0) {
               diff.days--;
             }
             if (diff.days > 0) {
               elems = [a];
               top = a.offsetTop;
-              start = Date.parse(start_date.replace(/-/g, '/'));
+              start = Date.parse(start_date);
               for (var i = 1; i <= diff.days; i++) {
                 d = new Date(start + i * 86400000);
                 a = self._addLabel(d, this, false);
