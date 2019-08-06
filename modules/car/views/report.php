@@ -55,9 +55,9 @@ class View extends \Gcms\View
             /* Model */
             'model' => \Car\Report\Model::toDataTable($params),
             /* รายการต่อหน้า */
-            'perPage' => $request->cookie('report_perPage', 30)->toInt(),
+            'perPage' => $request->cookie('carReport_perPage', 30)->toInt(),
             /* เรียงลำดับ */
-            'sort' => $request->cookie('report_sort', 'today,create_date DESC')->toString(),
+            'sort' => $request->cookie('carReport_sort', 'today,create_date DESC')->toString(),
             /* ฟังก์ชั่นจัดรูปแบบการแสดงผลแถวของตาราง */
             'onRow' => array($this, 'onRow'),
             /* คอลัมน์ที่ไม่ต้องแสดงผล */
@@ -170,8 +170,8 @@ class View extends \Gcms\View
             ),
         ));
         // save cookie
-        setcookie('report_perPage', $table->perPage, time() + 3600 * 24 * 365, '/');
-        setcookie('report_sort', $table->sort, time() + 2592000, '/', HOST, HTTPS, true);
+        setcookie('carReport_perPage', $table->perPage, time() + 2592000, '/', HOST, HTTPS, true);
+        setcookie('carReport_sort', $table->sort, time() + 2592000, '/', HOST, HTTPS, true);
 
         return $table->render();
     }

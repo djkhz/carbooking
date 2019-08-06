@@ -61,7 +61,7 @@ class Model extends \Kotchasan\Model
     public function action(Request $request)
     {
         $ret = array();
-        // session, referer, สามารถอนุมัติห้องประชุมได้
+        // session, referer, สามารถอนุมัติได้
         if ($request->initSession() && $request->isReferer() && $login = Login::isMember()) {
             if (Login::notDemoMode($login) && Login::checkPermission($login, 'can_approve_car')) {
                 // รับค่าจากการ POST
