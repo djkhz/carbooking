@@ -1,6 +1,7 @@
 var CANCEL = 'ยกเลิก';
 var CHANGE_COLOR = 'เปลี่ยนสี';
 var CHECK = 'เลือก';
+var CHECKBOX = 'ตัวเลือก';
 var DELETE = 'ลบ';
 var DISABLE = 'ปิดใช้งาน';
 var ENABLE = 'เปิดใช้งาน';
@@ -10,7 +11,7 @@ var PLEASE_BROWSE_FILE = 'กรุณาเลือกไฟล์';
 var PLEASE_FILL_IN = 'กรุณากรอก';
 var PLEASE_SAVE_BEFORE_CONTINUING = 'กรุณาบันทึก ก่อนดำเนินการต่อ';
 var PLEASE_SELECT = 'กรุณาเลือก';
-var PLEASE_SELECT_AT_LEAST_ONE_ITEM = 'กรุณาเลือกอย่างน้อย 1 รายการ';
+var PLEASE_SELECT_AT_LEAST_ONE_ITEM = 'กรุณาเลือก XXX อย่างน้อย 1 รายการ';
 var PREV_MONTH = 'เดือนก่อนหน้า';
 var SELECT_ALL = 'เลือกทั้งหมด';
 var SELECT_NONE = 'ไม่เลือกรายการใดเลย';

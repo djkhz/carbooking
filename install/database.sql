@@ -88,8 +88,10 @@ CREATE TABLE `{prefix}_car_reservation` (
   `begin` datetime DEFAULT NULL,
   `end` datetime DEFAULT NULL,
   `status` tinyint(1) NOT NULL,
-  `reason` text COLLATE utf8_unicode_ci NOT NULL
+  `reason` text COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `{prefix}_car_reservation_data`
@@ -143,7 +145,7 @@ CREATE TABLE `{prefix}_user` (
   `name` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `sex` varchar(1) COLLATE utf8_unicode_ci DEFAULT NULL,
   `id_card` varchar(13) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `address` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   `phone` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
   `provinceID` varchar(3) COLLATE utf8_unicode_ci DEFAULT NULL,
   `province` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,

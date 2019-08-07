@@ -202,6 +202,7 @@ return array(
   'Search' => 'ຄົ້ນຫາ',
   'Search <strong>:search</strong> found :count entries, displayed :start to :end, page :page of :total pages' => 'ຄົ້ນຫາ <strong>:search</strong> ພົບ :count ລາຍການ ສະແດງລາຍການທີ່:start - :end ໜ້າທີ່:page ຈາກທັງໝົດ :total ໜ້າ',
   'Send a welcome email to new members' => 'ສົ່ງອີເມວຕ້ອນຮັບກັບສະມາຊິກໃຫມ່',
+  'Send notification messages When making a transaction' => 'ສົ່ງຂໍ້ຄວາມແຈ້ງເຕືອນ ເມື່ອເຮັດການຊື້ຂາຍ',
   'Set the application for send an email' => 'ເລືອກໂປຮແກຮມທີ່ໃຊ້ໃນການສົ່ງອີເມວ',
   'Setting up the email system' => 'ການຕັ້ງຄ່າກ່ຽວກັບລະບົບອີເມວ',
   'Settings' => 'ຕັ້ງຄ່າ',

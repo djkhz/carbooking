@@ -1,6 +1,7 @@
 var CANCEL = 'Cancel';
 var CHANGE_COLOR = 'change color';
 var CHECK = 'check';
+var CHECKBOX = 'Checkbox';
 var DELETE = 'delete';
 var DISABLE = 'Disable';
 var ENABLE = 'Enable';
@@ -10,7 +11,7 @@ var PLEASE_BROWSE_FILE = 'Please browse file';
 var PLEASE_FILL_IN = 'Please fill in';
 var PLEASE_SAVE_BEFORE_CONTINUING = 'Please save before continuing';
 var PLEASE_SELECT = 'Please select';
-var PLEASE_SELECT_AT_LEAST_ONE_ITEM = 'Please select at least one item';
+var PLEASE_SELECT_AT_LEAST_ONE_ITEM = 'Please select XXX at least one item';
 var PREV_MONTH = 'Prev Month';
 var SELECT_ALL = 'select all';
 var SELECT_NONE = 'select none';

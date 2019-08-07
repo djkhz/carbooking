@@ -45,7 +45,12 @@ if (defined('ROOT_PATH')) {
             if (!fieldExists($conn, $table, 'token')) {
                 $conn->query("ALTER TABLE `$table` ADD `token` VARCHAR(50) NULL AFTER `password`");
             }
+            $conn->query("ALTER TABLE `$table` CHANGE `address` `address` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL");
             $conn->query("ALTER TABLE `$table` CHANGE `password` `password` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL");
+            $content[] = '<li class="correct">ปรับปรุงตาราง `'.$table.'` สำเร็จ</li>';
+            // ตาราง car_reservation
+            $table = $db_config['prefix'].'_car_reservation';
+            $conn->query("ALTER TABLE `$table` CHANGE `reason` `reason` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL");
             $content[] = '<li class="correct">ปรับปรุงตาราง `'.$table.'` สำเร็จ</li>';
             // บันทึก settings/config.php
             $config['version'] = $new_config['version'];

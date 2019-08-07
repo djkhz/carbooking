@@ -44,7 +44,7 @@ class View extends \Gcms\View
             'class' => 'margin-left-right-bottom-top',
         ));
         /* Javascript */
-        $div->script('initCarCalendar();');
+        $section->script('initCarCalendar();');
 
         return $section->render();
     }

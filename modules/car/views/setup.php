@@ -93,9 +93,9 @@ class View extends \Gcms\View
             /* Model */
             'model' => \Car\Setup\Model::toDataTable(),
             /* รายการต่อหน้า */
-            'perPage' => $request->cookie('car_perPage', 30)->toInt(),
+            'perPage' => $request->cookie('carSetup_perPage', 30)->toInt(),
             /* เรียงลำดับ */
-            'sort' => $request->cookie('car_sort', 'id desc')->toString(),
+            'sort' => $request->cookie('carSetup_sort', 'id desc')->toString(),
             /* ฟังก์ชั่นจัดรูปแบบการแสดงผลแถวของตาราง */
             'onRow' => array($this, 'onRow'),
             /* คอลัมน์ที่ไม่ต้องแสดงผล */
@@ -131,8 +131,8 @@ class View extends \Gcms\View
             ),
         ));
         // save cookie
-        setcookie('car_perPage', $table->perPage, time() + 3600 * 24 * 365, '/');
-        setcookie('car_sort', $table->sort, time() + 3600 * 24 * 365, '/');
+        setcookie('carSetup_perPage', $table->perPage, time() + 2592000, '/', HOST, HTTPS, true);
+        setcookie('carSetup_sort', $table->sort, time() + 2592000, '/', HOST, HTTPS, true);
 
         return $table->render();
     }
