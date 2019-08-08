@@ -74,7 +74,7 @@ class Model extends \Kotchasan\Model
                             ->from('car_reservation')
                             ->where(array(
                                 array('id', $match[1]),
-                                Sql::create('NOW() < `begin`'),
+                                Sql::create('(NOW() < `begin` OR `status` IN (0,2))'),
                             ));
                         $ids = array();
                         foreach ($query->execute() as $item) {
