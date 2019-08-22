@@ -59,17 +59,16 @@ class Model extends \Kotchasan\Model
             ->where(array('R.published', 1))
             ->order('R.number')
             ->cacheOn();
-        $select = array('R.number');
         $n = 1;
+        $concat = array('R.`number`');
         foreach (Language::get('CAR_SELECT') as $key => $label) {
             $query->join('vehicles_meta M'.$n, 'LEFT', array(array('M'.$n.'.vehicle_id', 'R.id'), array('M'.$n.'.name', $key)));
             $query->join('category C'.$n, 'LEFT', array(array('C'.$n.'.type', $key), array('C'.$n.'.category_id', 'M'.$n.'.value')));
-            $select[] = $label;
-            $select[] = 'C'.$n.'.topic';
+            $concat[] = '"'.$label.'", C'.$n.'.`topic`';
             ++$n;
         }
         $result = array();
-        foreach ($query->select('R.id', Sql::CONCAT($select, 'number', ' '))->execute() as $item) {
+        foreach ($query->select('R.id', Sql::create('CONCAT_WS(" ",'.implode(',', $concat).') AS `number`'))->execute() as $item) {
             $result[$item->id] = $item->number;
         }
 
