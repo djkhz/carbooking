@@ -487,7 +487,7 @@ window.$K = (function() {
       day: inDays,
       month: inMonths,
       year: inYears,
-      days: Math.round((this - d) / 86400000)
+      days: Math.floor(Math.abs(this.getTime() - d.getTime()) / 86400000)
     };
   };
   Date.monthNames = [
