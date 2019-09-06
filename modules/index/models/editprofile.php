@@ -75,11 +75,12 @@ class Model extends \Kotchasan\Model
                     'country' => $request->post('register_country')->filter('A-Z'),
                     'status' => $request->post('register_status')->toInt(),
                 );
-                $permission = $request->post('register_permission', array())->topic();
                 // ชื่อตาราง user
                 $table_user = $this->getTableName('user');
                 // database connection
                 $db = $this->db();
+                // แอดมิน
+                $isAdmin = Login::isAdmin();
                 // ตรวจสอบค่าที่ส่งมา
                 $user = self::get($request->post('register_id')->toInt());
                 if ($user) {
@@ -87,8 +88,9 @@ class Model extends \Kotchasan\Model
                     if ($login['id'] == $user['id']) {
                         unset($save['status']);
                     }
-                    if (Login::isAdmin()) {
-                        // แอดมิน อัปเดท permission ได้
+                    if ($isAdmin) {
+                        // แอดมิน
+                        $permission = $request->post('register_permission', array())->topic();
                         $save['permission'] = empty($permission) ? '' : ','.implode(',', $permission).',';
                     } elseif ($login['id'] != $user['id']) {
                         // ไม่ใช่แอดมินแก้ไขได้แค่ตัวเองเท่านั้น
@@ -148,7 +150,9 @@ class Model extends \Kotchasan\Model
                             $db->update($table_user, $user['id'], $save);
                             if ($login['id'] == $user['id']) {
                                 // ตัวเอง อัปเดทข้อมูลการ login
-                                $save['permission'] = $permission;
+                                if ($isAdmin) {
+                                    $save['permission'] = $permission;
+                                }
                                 $save['password'] = $password;
                                 $_SESSION['login'] = ArrayTool::replace($_SESSION['login'], $save);
                                 // reload หน้าเว็บ
