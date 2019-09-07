@@ -15,7 +15,7 @@ use Kotchasan\Http\Request;
 use Kotchasan\Language;
 
 /**
- * เพิ่ม/แก้ไข ข้อมูล Car.
+ * เพิ่ม/แก้ไข ข้อมูล Car
  *
  * @author Goragod Wiriya <admin@goragod.com>
  *
@@ -39,7 +39,7 @@ class Model extends \Kotchasan\Model
             ->where(array('V.id', $id));
         $select = array('V.*', 'U.name', 'U.phone', 'U.username');
         $n = 1;
-        foreach (Language::get('CAR_OPTIONS') as $key => $label) {
+        foreach (Language::get('CAR_OPTIONS', array()) as $key => $label) {
             $query->join('car_reservation_data M'.$n, 'LEFT', array(array('M'.$n.'.reservation_id', 'V.id'), array('M'.$n.'.name', $key)));
             $select[] = 'M'.$n.'.value '.$key;
             ++$n;
@@ -106,7 +106,7 @@ class Model extends \Kotchasan\Model
                     if ($end_date.$end_time > $begin_date.$begin_time) {
                         $save['begin'] = $begin_date.' '.$begin_time;
                         $save['end'] = $end_date.' '.$end_time;
-                        // ตรวจสอบห้องว่าง เฉพาะรายการที่จะอนุมัติ
+                        // ตรวจสอบว่าง เฉพาะรายการที่จะอนุมัติ
                         if ($save['status'] == 1 && !\Car\Checker\Model::availability($save, $index->id)) {
                             $ret['ret_begin_date'] = Language::get('Vehicles cannot be used at the selected time');
                         }
@@ -139,7 +139,7 @@ class Model extends \Kotchasan\Model
                         }
                         if ($request->post('send_mail')->toBoolean()) {
                             // ส่งอีเมลไปยังผู้ที่เกี่ยวข้อง
-                            $ret['alert'] = \Car\Email\Model::send($index->username, $save['detail'], $save['status']);
+                            $ret['alert'] = \Car\Email\Model::send($index->username, $index->name, $save);
                         } else {
                             // คืนค่า
                             $ret['alert'] = Language::get('Saved successfully');

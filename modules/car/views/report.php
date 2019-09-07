@@ -45,7 +45,7 @@ class View extends \Gcms\View
             'status' => $index->status,
         );
         // พนักงานกับรถ
-        $this->chauffeur = array(-1 => '{LNG_Do not want}', 0 => '{LNG_Not specified (anyone)}')+\Car\Chauffeur\Model::init()->toSelect();
+        $this->chauffeur = array(-1 => '{LNG_Self drive}', 0 => '{LNG_Not specified (anyone)}')+\Car\Chauffeur\Model::init()->toSelect();
         // URL สำหรับส่งให้ตาราง
         $uri = $request->createUriWithGlobals(WEB_URL.'index.php');
         // ตาราง
@@ -81,14 +81,12 @@ class View extends \Gcms\View
             'filters' => array(
                 array(
                     'name' => 'vehicle_id',
-                    'default' => 0,
                     'text' => '{LNG_Car}',
                     'options' => array(0 => '{LNG_all items}')+\Car\Vehicles\Model::toSelect(),
                     'value' => $params['vehicle_id'],
                 ),
                 array(
                     'name' => 'chauffeur',
-                    'default' => -2,
                     'text' => '{LNG_Chauffeur}',
                     'options' => array(-2 => '{LNG_all items}') + $this->chauffeur,
                     'value' => $params['chauffeur'],

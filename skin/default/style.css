@@ -667,9 +667,6 @@ header .inline {
   font-size: 1.5em;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 }
-.modal_detail table td {
-  text-align: right;
-}
 .modal_detail table tbody th {
   font-weight: bold;
   text-align: left;

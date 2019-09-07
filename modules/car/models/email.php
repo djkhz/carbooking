@@ -10,6 +10,7 @@
 
 namespace Car\Email;
 
+use Kotchasan\Date;
 use Kotchasan\Language;
 
 /**
@@ -22,35 +23,53 @@ use Kotchasan\Language;
 class Model extends \Kotchasan\KBase
 {
     /**
-     * ส่งอีเมลแจ้งการจอง.
+     * ส่งอีเมลแจ้งการทำรายการ
      *
-     * @param string $mailto
-     * @param string $detail
-     * @param int    $status
+     * @param string $mailto อีเมล
+     * @param string $name   ชื่อ
+     * @param array  $order ข้อมูล
+     *
+     * @return string
      */
-    public static function send($mailto, $detail, $status)
+    public static function send($mailto, $name, $order)
     {
         if (self::$cfg->noreply_email != '') {
+            // ข้อความ
+            $msg = array(
+                '{LNG_Book a vehicle}',
+                '{LNG_Contact name}: '.$name,
+                '{LNG_Vehicle usage details}: '.$order['detail'],
+                '{LNG_Date}: '.Date::format($order['begin'], 'd M Y H:i').' - '.Date::format($order['end'], 'd M Y H:i'),
+                '{LNG_Status}: '.Language::find('CAR_BOOKING_STATUS', null, $order['status']),
+                'URL: '.WEB_URL,
+            );
+            $msg = Language::trans(implode("\n", $msg));
+            // ส่งอีเมลไปยังผู้ทำรายการเสมอ
+            $emails = array($mailto => $mailto.'<'.$name.'>');
             // อีเมลของมาชิกที่สามารถอนุมัติได้ทั้งหมด
+            $where = array(
+                array('status', 1),
+                array('permission', 'LIKE', '%,can_approve_car,%'),
+            );
+            // คนขับรถ
+            if ($order['chauffeur'] > 0) {
+                $where[] = array('id', $order['chauffeur']);
+            }
             $query = \Kotchasan\Model::createQuery()
-                ->select('username')
+                ->select('username', 'name')
                 ->from('user')
-                ->where(array('social', 0))
-                ->andWhere(array(
-                    array('status', 1),
-                    array('permission', 'LIKE', '%,can_approve_car,%'),
-                ), 'OR')
+                ->where(array(
+                    array('social', 0),
+                    array('active', 1),
+                ))
+                ->andWhere($where, 'OR')
                 ->cacheOn();
-            $emails = array($mailto => $mailto);
             foreach ($query->execute() as $item) {
-                $emails[$item->username] = $item->username;
+                $emails[$item->username] = $item->username.'<'.$item->name.'>';
             }
             // ส่งอีเมล
             $subject = '['.self::$cfg->web_title.'] '.Language::get('Book a vehicle');
-            $msg = Language::get('Book a vehicle').' '.$detail;
-            $msg .= "<br>\n".Language::get('Status').' : '.Language::find('CAR_BOOKING_STATUS', null, $status);
-            $msg .= "<br>\n".WEB_URL;
-            $err = \Kotchasan\Email::send(implode(',', $emails), self::$cfg->noreply_email, $subject, $msg);
+            $err = \Kotchasan\Email::send(implode(',', $emails), self::$cfg->noreply_email, $subject, nl2br($msg));
             if ($err->error()) {
                 // คืนค่า error
                 return strip_tags($err->getErrorMessage());

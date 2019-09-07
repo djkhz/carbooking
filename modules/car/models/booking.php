@@ -66,7 +66,7 @@ class Model extends \Kotchasan\Model
                     ->where(array('V.id', $id));
                 $select = array('V.*', 'U.name', 'U.phone', $sql);
                 $n = 1;
-                foreach (Language::get('CAR_OPTIONS') as $key => $label) {
+                foreach (Language::get('CAR_OPTIONS', array()) as $key => $label) {
                     $query->join('car_reservation_data M'.$n, 'LEFT', array(array('M'.$n.'.reservation_id', 'V.id'), array('M'.$n.'.name', $key)));
                     $select[] = 'M'.$n.'.value '.$key;
                     ++$n;
@@ -107,7 +107,7 @@ class Model extends \Kotchasan\Model
                     'phone' => $request->post('phone')->topic(),
                 );
                 $datas = array();
-                foreach (Language::get('CAR_OPTIONS') as $key => $label) {
+                foreach (Language::get('CAR_OPTIONS', array()) as $key => $label) {
                     $values = $request->post($key, array())->toInt();
                     if (!empty($values)) {
                         $datas[$key] = implode(',', $values);
@@ -183,7 +183,7 @@ class Model extends \Kotchasan\Model
                         }
                         if (empty($ret)) {
                             // ใหม่ ส่งอีเมลไปยังผู้ที่เกี่ยวข้อง
-                            $ret['alert'] = \Car\Email\Model::send($login['username'], $save['detail'], 0);
+                            $ret['alert'] = \Car\Email\Model::send($login['username'], $login['name'], $save);
                         }
                         $ret['location'] = $request->getUri()->postBack('index.php', array('module' => 'car'));
                         // เคลียร์

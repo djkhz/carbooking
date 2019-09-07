@@ -60,13 +60,13 @@ class Controller extends \Kotchasan\KBase
                     'url' => 'index.php?module=car-write',
                 ),
             );
-            foreach (Language::get('CAR_OPTIONS') as $type => $text) {
+            foreach (Language::get('CAR_OPTIONS', array()) as $type => $text) {
                 $submenus[] = array(
                     'text' => $text,
                     'url' => 'index.php?module=car-categories&amp;type='.$type,
                 );
             }
-            foreach (Language::get('CAR_SELECT') as $type => $text) {
+            foreach (Language::get('CAR_SELECT', array()) as $type => $text) {
                 $submenus[] = array(
                     'text' => $text,
                     'url' => 'index.php?module=car-categories&amp;type='.$type,

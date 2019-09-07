@@ -40,7 +40,7 @@ class Model extends \Kotchasan\Model
             ->where(array('V.member_id', $member_id));
         $concat = array('R.`number`');
         $n = 1;
-        foreach (Language::get('CAR_SELECT') as $key => $label) {
+        foreach (Language::get('CAR_SELECT', array()) as $key => $label) {
             $query->join('vehicles_meta M'.$n, 'LEFT', array(array('M'.$n.'.vehicle_id', 'R.id'), array('M'.$n.'.name', $key)));
             $query->join('category C'.$n, 'LEFT', array(array('C'.$n.'.type', $key), array('C'.$n.'.category_id', 'M'.$n.'.value')));
             $concat[] = '"'.$label.'", C'.$n.'.`topic`';
@@ -106,12 +106,12 @@ class Model extends \Kotchasan\Model
             ->where(array('V.id', $id));
         $select = array('V.*', 'R.number', 'U2.name chauffeur_name', 'U2.phone chauffeur_phone', 'U.name contact', 'U.phone', 'R.color', 'R.seats');
         $n = 1;
-        foreach (Language::get('CAR_SELECT') as $key => $label) {
+        foreach (Language::get('CAR_SELECT', array()) as $key => $label) {
             $query->join('vehicles_meta M'.$n, 'LEFT', array(array('M'.$n.'.vehicle_id', 'R.id'), array('M'.$n.'.name', $key)));
             $select[] = 'M'.$n.'.value '.$key;
             ++$n;
         }
-        foreach (Language::get('CAR_OPTIONS') as $key => $label) {
+        foreach (Language::get('CAR_OPTIONS', array()) as $key => $label) {
             $query->join('car_reservation_data M'.$n, 'LEFT', array(array('M'.$n.'.reservation_id', 'V.id'), array('M'.$n.'.name', $key)));
             $select[] = 'M'.$n.'.value '.$key;
             ++$n;

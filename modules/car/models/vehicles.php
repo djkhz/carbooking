@@ -37,7 +37,7 @@ class Model extends \Kotchasan\Model
             ->cacheOn();
         $select = array('R.id', 'R.number', 'R.color', 'R.detail');
         $n = 1;
-        foreach (Language::get('CAR_SELECT') as $key => $label) {
+        foreach (Language::get('CAR_SELECT', array()) as $key => $label) {
             $query->join('vehicles_meta M'.$n, 'LEFT', array(array('M'.$n.'.vehicle_id', 'R.id'), array('M'.$n.'.name', $key)));
             $select[] = 'M'.$n.'.value '.$key;
             ++$n;
@@ -61,7 +61,7 @@ class Model extends \Kotchasan\Model
             ->cacheOn();
         $n = 1;
         $concat = array('R.`number`');
-        foreach (Language::get('CAR_SELECT') as $key => $label) {
+        foreach (Language::get('CAR_SELECT', array()) as $key => $label) {
             $query->join('vehicles_meta M'.$n, 'LEFT', array(array('M'.$n.'.vehicle_id', 'R.id'), array('M'.$n.'.name', $key)));
             $query->join('category C'.$n, 'LEFT', array(array('C'.$n.'.type', $key), array('C'.$n.'.category_id', 'M'.$n.'.value')));
             $concat[] = '"'.$label.'", C'.$n.'.`topic`';

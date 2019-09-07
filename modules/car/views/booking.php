@@ -154,7 +154,7 @@ class View extends \Gcms\View
         ));
         // ตัวเลือก checkbox
         $category = \Car\Category\Model::init();
-        foreach (Language::get('CAR_OPTIONS') as $key => $label) {
+        foreach (Language::get('CAR_OPTIONS', array()) as $key => $label) {
             $fieldset->add('checkboxgroups', array(
                 'id' => $key,
                 'labelClass' => 'g-input icon-category',

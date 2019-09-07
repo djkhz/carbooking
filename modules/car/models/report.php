@@ -42,7 +42,6 @@ class Model extends \Kotchasan\Model
         if ($index['chauffeur'] > -2) {
             $where[] = array('V.chauffeur', $index['chauffeur']);
         }
-
         $sql = Sql::create('(CASE WHEN NOW() BETWEEN V.`begin` AND V.`end` THEN 1 WHEN NOW() > V.`end` THEN 2 ELSE 0 END) AS `today`');
 
         return static::createQuery()

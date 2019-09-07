@@ -39,7 +39,7 @@ class View extends \Gcms\View
         $content .= '<table class="border data fullwidth"><tbody>';
         $content .= '<tr><th>{LNG_Car number}</th><td><span class="term" style="background-color:'.$index->color.'">'.$index->number.'</span></td></tr>';
         $category = \Car\Category\Model::init();
-        foreach (Language::get('CAR_SELECT') as $key => $label) {
+        foreach (Language::get('CAR_SELECT', array()) as $key => $label) {
             if (isset($index->{$key})) {
                 $content .= '<tr><th>'.$label.'</th><td>'.$category->get($key, $index->{$key}).'</td></tr>';
             }
@@ -52,7 +52,7 @@ class View extends \Gcms\View
     }
 
     /**
-     * แสดงรายละเอียดการจอง.
+     * แสดงรายละเอียดการจอง
      *
      * @param object $index
      *
@@ -72,12 +72,12 @@ class View extends \Gcms\View
         }
         $content .= '</td></tr>';
         $content .= '<tr><th>{LNG_Car number}</th><td><span class="term" style="background-color:'.$index->color.'">'.$index->number.'</span></td></tr>';
-        foreach (Language::get('CAR_SELECT') as $key => $label) {
+        foreach (Language::get('CAR_SELECT', array()) as $key => $label) {
             if (isset($index->{$key})) {
                 $content .= '<tr><th>'.$label.'</th><td>'.$category->get($key, $index->{$key}).'</td></tr>';
             }
         }
-        $chauffeur = array(-1 => '{LNG_Do not want}', 0 => '{LNG_Not specified (anyone)}', $index->chauffeur => $index->chauffeur_name);
+        $chauffeur = array(-1 => '{LNG_Self drive}', 0 => '{LNG_Not specified (anyone)}', $index->chauffeur => $index->chauffeur_name);
         $content .= '<tr><th>{LNG_Chauffeur}</th><td>'.$chauffeur[$index->chauffeur];
         if ($index->chauffeur_phone != '') {
             $content .= ' <a href="tel:'.$index->chauffeur_phone.'"><span class="icon-phone">'.$index->chauffeur_phone.'</span></a>';
@@ -92,7 +92,7 @@ class View extends \Gcms\View
         }
         $content .= ' {LNG_time} '.Date::format($begin_time, 'H:i').'-'.Date::format($end_time, 'H:i');
         $content .= '</td></tr>';
-        foreach (Language::get('CAR_OPTIONS') as $key => $label) {
+        foreach (Language::get('CAR_OPTIONS', array()) as $key => $label) {
             if (!empty($index->{$key})) {
                 $options = explode(',', $index->{$key});
                 $vals = array();

@@ -83,7 +83,6 @@ return array(
   'Description' => 'ຄຳອະທິບາຍ',
   'Detail' => 'ລາຍະລະອຽດ',
   'Details of' => 'ລາຍລະອຽດຂອງ',
-  'Do not want' => 'ບໍ່ຕ້ອງການ',
   'drag to order' => 'ຫຼາກເພື່ອຈັດລຳດັບ',
   'Edit' => 'ແກ້ໄຂ',
   'Editing your account' => 'ແກ້ໄຂຂໍ້ມູນສ່ວນຕົວສະມາຊິກ',
@@ -194,7 +193,7 @@ return array(
   'Profile' => 'ຂໍ້ມູນສ່ວນຕົວ',
   'Province' => 'ແຂວງ',
   'PUBLISHEDS' => array(
-    0 => 'ລະງັບການພິມເຜີຍແຜ່',
+    0 => 'ລະງັບການເຜີຍແຜ່',
     1 => 'ເຜີຍແຜ່'
   ),
   'Reason' => 'ເຫດ​ຜົນ',
@@ -210,6 +209,7 @@ return array(
   'scroll to top' => 'ເລື່ອນຂື້ນດ້ານເທິງ',
   'Search' => 'ຄົ້ນຫາ',
   'Search <strong>:search</strong> found :count entries, displayed :start to :end, page :page of :total pages' => 'ຄົ້ນຫາ <strong>:search</strong> ພົບ :count ລາຍການ ສະແດງລາຍການທີ່:start - :end ໜ້າທີ່:page ຈາກທັງໝົດ :total ໜ້າ',
+  'Self drive' => 'ຂັບເອງ',
   'Send a welcome email to new members' => 'ສົ່ງອີເມວຕ້ອນຮັບກັບສະມາຊິກໃຫມ່',
   'Send notification messages When making a transaction' => 'ສົ່ງຂໍ້ຄວາມແຈ້ງເຕືອນ ເມື່ອເຮັດການຊື້ຂາຍ',
   'Set the application for send an email' => 'ເລືອກໂປຮແກຮມທີ່ໃຊ້ໃນການສົ່ງອີເມວ',

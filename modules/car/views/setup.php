@@ -46,7 +46,7 @@ class View extends \Gcms\View
     {
         $this->category = \Car\Category\Model::init();
         $this->publisheds = Language::get('PUBLISHEDS');
-        $this->car_select = Language::get('CAR_SELECT');
+        $this->car_select = Language::get('CAR_SELECT', array());
         $headers = array(
             'number' => array(
                 'text' => '{LNG_Car number}',

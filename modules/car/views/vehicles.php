@@ -43,7 +43,7 @@ class View extends \Gcms\View
     public function render(Request $request)
     {
         $this->category = \Car\Category\Model::init();
-        $this->car_select = Language::get('CAR_SELECT');
+        $this->car_select = Language::get('CAR_SELECT', array());
         $headers = array(
             'id' => array(
                 'text' => '{LNG_Image}',

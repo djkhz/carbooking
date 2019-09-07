@@ -25,7 +25,7 @@ use Kotchasan\Language;
 class Controller extends \Gcms\Controller
 {
     /**
-     * หมวดหมู่ของระบบโรงเรียน.
+     * หมวดหมู่
      *
      * @param Request $request
      *
@@ -37,7 +37,7 @@ class Controller extends \Gcms\Controller
             // ประเภทที่ต้องการ
             'type' => $request->request('type')->topic(),
             // ชื่อหมวดหมู่ที่สามารถใช้งานได้
-            'categories' => Language::get('CAR_OPTIONS') + Language::get('CAR_SELECT'),
+            'categories' => Language::get('CAR_OPTIONS', array()) + Language::get('CAR_SELECT', array()),
         );
         if (!isset($index->categories[$index->type])) {
             $index->type = \Kotchasan\ArrayTool::getFirstKey($index->categories);

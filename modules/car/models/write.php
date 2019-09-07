@@ -52,7 +52,7 @@ class Model extends \Kotchasan\Model
                 ->where(array('R.id', $id));
             $select = array('R.*');
             $n = 1;
-            foreach (Language::get('CAR_SELECT') as $key => $label) {
+            foreach (Language::get('CAR_SELECT', array()) as $key => $label) {
                 $query->join('vehicles_meta M'.$n, 'LEFT', array(array('M'.$n.'.vehicle_id', 'R.id'), array('M'.$n.'.name', $key)));
                 $select[] = 'M'.$n.'.value '.$key;
                 ++$n;
@@ -81,7 +81,7 @@ class Model extends \Kotchasan\Model
                     'detail' => $request->post('detail')->textarea(),
                 );
                 $metas = array();
-                foreach (Language::get('CAR_SELECT') as $key => $label) {
+                foreach (Language::get('CAR_SELECT', array()) as $key => $label) {
                     $metas[$key] = $request->post($key)->toInt();
                 }
                 $id = $request->post('id')->toInt();
