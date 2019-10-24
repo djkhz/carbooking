@@ -166,7 +166,7 @@ class Model extends \Kotchasan\Model
                             $ret['alert'] = Language::get('Saved successfully');
                         }
                         if ($index->phone != $user['phone']) {
-                            // อัปเดทเบอร์โทรสมาชิก
+                            // อัปเดตเบอร์โทรสมาชิก
                             $this->db()->update($this->getTableName('user'), $login['id'], $user);
                         }
                         // รายละเอียดการจอง

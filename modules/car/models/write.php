@@ -131,7 +131,7 @@ class Model extends \Kotchasan\Model
                             // แก้ไข
                             $this->db()->update($this->getTableName('vehicles'), $save['id'], $save);
                         }
-                        // อัปเดท meta
+                        // อัปเดต meta
                         $vehicles_meta = $this->getTableName('vehicles_meta');
                         $this->db()->delete($vehicles_meta, array('vehicle_id', $save['id']), 0);
                         foreach ($metas as $key => $value) {
