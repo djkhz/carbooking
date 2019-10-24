@@ -92,7 +92,7 @@ class View extends \Gcms\View
         ));
         // picture
         if (is_file(ROOT_PATH.DATA_FOLDER.'car/'.$index->id.'.jpg')) {
-            $img = WEB_URL.DATA_FOLDER.'car/'.$index->id.'.jpg';
+            $img = WEB_URL.DATA_FOLDER.'car/'.$index->id.'.jpg?'.time();
         } else {
             $img = WEB_URL.'modules/car/img/noimage.png';
         }

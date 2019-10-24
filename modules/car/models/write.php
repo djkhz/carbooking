@@ -99,11 +99,12 @@ class Model extends \Kotchasan\Model
                     } else {
                         $save['id'] = $index->id;
                     }
+                    // ไดเร็คทอรี่เก็บไฟล์
+                    $dir = ROOT_PATH.DATA_FOLDER.'car/';
                     // อัปโหลดไฟล์
                     foreach ($request->getUploadedFiles() as $item => $file) {
                         /* @var $file \Kotchasan\Http\UploadedFile */
                         if ($file->hasUploadFile()) {
-                            $dir = ROOT_PATH.DATA_FOLDER.'car/';
                             if (!File::makeDirectory($dir)) {
                                 // ไดเรคทอรี่ไม่สามารถสร้างได้
                                 $ret['ret_'.$item] = sprintf(Language::get('Directory %s cannot be created or is read-only.'), DATA_FOLDER.'car/');
