@@ -2136,18 +2136,13 @@ window.$K = (function() {
       var self = this;
       window.setTimeout(function() {
         var dm = self.body.getDimensions(),
-          hOffset =
-          dm.height -
-          self.body.getClientHeight() +
-          parseInt(self.body.getStyle("marginTop")) +
-          parseInt(self.body.getStyle("marginBottom")) +
-          40,
+          hOffset = dm.height - self.body.getClientHeight() + parseInt(self.body.getStyle("marginTop")) + parseInt(self.body.getStyle("marginBottom")) + 40,
           h = document.viewport.getHeight() - hOffset;
         if (dm.height > h) {
           self.div.style.height = h + "px";
         }
         self.div.center();
-      }, 1);
+      }, 1000);
       return this;
     },
     hide: function() {
@@ -2503,7 +2498,7 @@ window.$K = (function() {
   };
   window.GDrag = GClass.create();
   GDrag.prototype = {
-    initialize: function(src, move, options) {
+    initialize: function(src, options) {
       this.options = {
         beginDrag: $K.emptyFunction,
         moveDrag: $K.emptyFunction,
@@ -2514,32 +2509,26 @@ window.$K = (function() {
         this.options[property] = options[property];
       }
       this.src = $G(src);
-      this.move = $G(move);
       var self = this;
 
-      function _mousemove(e) {
-        self.mousePos = GEvent.pointer(e);
+      function _mousemove(event) {
+        self.mousePos = GEvent.pointer(event);
         self.options.moveDrag.call(self);
       }
 
-      function _selectstart(e) {
-        GEvent.stop(e);
+      function cancelEvent(event) {
+        GEvent.stop(event);
       }
 
-      function _dragstart(e) {
-        GEvent.stop(e);
-      }
-
-      function _mouseup(e) {
+      function _mouseup(event) {
         document.removeEvent("mouseup", _mouseup);
         document.removeEvent("mousemove", _mousemove);
-        document.removeEvent("selectstart", _selectstart);
-        document.removeEvent("dragstart", _dragstart);
+        document.removeEvent("selectstart dragstart", cancelEvent);
         if (self.src.releaseCapture) {
           self.src.releaseCapture();
         }
-        self.mousePos = GEvent.pointer(e);
-        GEvent.stop(e);
+        self.mousePos = GEvent.pointer(event);
+        GEvent.stop(event);
         self.options.endDrag.call(self.src);
       }
 
@@ -2548,7 +2537,7 @@ window.$K = (function() {
           src = GEvent.element(event),
           temp = this;
 
-        function _cancelClick(event) {
+        function _cancelClick() {
           window.clearTimeout(delay);
           this.removeEvent("mouseup", _cancelClick);
         }
@@ -2561,8 +2550,7 @@ window.$K = (function() {
           delay = window.setTimeout(function() {
             document.addEvent("mouseup", _mouseup);
             document.addEvent("mousemove", _mousemove);
-            document.addEvent("selectstart", _selectstart);
-            document.addEvent("dragstart", _dragstart);
+            document.addEvent("selectstart dragstart", cancelEvent);
             self.options.beginDrag.call(self);
           }, 100);
           temp.addEvent("mouseup", _cancelClick);
@@ -2610,9 +2598,7 @@ window.$K = (function() {
         first.target.dispatchEvent(simulatedEvent);
         event.preventDefault();
       }
-      this.src.addEvent("touchstart", touchHandler, false);
-      this.src.addEvent("touchmove", touchHandler, false);
-      this.src.addEvent("touchend", touchHandler, false);
+      this.src.addEvent("touchstart touchmove touchend", touchHandler, false);
     }
   };
   window.GDragMove = GClass.create();
@@ -2672,7 +2658,7 @@ window.$K = (function() {
         endDrag: _endDrag,
         srcOnly: this.options.srcOnly
       };
-      new GDrag(this.dragObj, this.dragObj, o);
+      new GDrag(this.dragObj, o);
     }
   };
   window.GTime = GClass.create();
