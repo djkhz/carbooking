@@ -54,10 +54,7 @@ final class Language extends \Kotchasan\KBase
      */
     public static function find($key, $default = null, $value_key = null)
     {
-        if (null === self::$languages) {
-            new static();
-        }
-        $result = $value_key === null || !isset(self::$languages->{$key}) ? ($default === null ? $key : $default) : self::$languages->{$key};
+        $result = self::get($key, $default);
         if ($value_key !== null && is_array($result)) {
             $result = isset($result[$value_key]) ? $result[$value_key] : null;
         }
@@ -85,7 +82,7 @@ final class Language extends \Kotchasan\KBase
             new static();
         }
 
-        return isset(self::$languages->$key) ? self::$languages->$key : ($default === null ? $key : $default);
+        return isset(self::$languages->{$key}) ? self::$languages->{$key} : ($default === null ? $key : $default);
     }
 
     /**
@@ -102,7 +99,7 @@ final class Language extends \Kotchasan\KBase
         }
         $result = array();
         foreach ($keys as $i => $key) {
-            $result[is_int($i) ? $key : $i] = isset(self::$languages->$key) ? self::$languages->$key : $key;
+            $result[is_int($i) ? $key : $i] = isset(self::$languages->{$key}) ? self::$languages->{$key} : $key;
         }
 
         return $result;

@@ -41,6 +41,9 @@ html {
   -ms-touch-action: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+.smooth {
+  scroll-behavior: smooth;
+}
 @-webkit-keyframes bugfix {
   from {
     padding: 0;
@@ -4371,6 +4374,7 @@ td.buttons .button:last-child {
   body.responsive .topmenu.slidemenu {
     display: block;
     position: fixed;
+    z-index: 2;
     left: -240px;
     top: 0;
     bottom: 0;
