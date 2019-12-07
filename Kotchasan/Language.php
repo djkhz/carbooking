@@ -44,6 +44,7 @@ final class Language extends \Kotchasan\KBase
      * ถ้าระบุ $value_key มาด้วยและ ค่าของภาษาเป็นแอเรย์ จะคืนค่า แอเรย์ของภาษาที่ $value_key
      * ถ้าไม่พบข้อมูลที่เลือกคืนค่า null.
      *
+     * @assert ('XYZ', array()) [==] array()
      * @assert ('YEAR_OFFSET') [==] 543
      * @assert ('DATE_LONG', null, 0) [==] 'อาทิตย์'
      * @assert ('not found', 'default') [==] 'default'
@@ -54,12 +55,21 @@ final class Language extends \Kotchasan\KBase
      */
     public static function find($key, $default = null, $value_key = null)
     {
-        $result = self::get($key, $default);
-        if ($value_key !== null && is_array($result)) {
-            $result = isset($result[$value_key]) ? $result[$value_key] : null;
+        if (null === self::$languages) {
+            new static();
+        }
+        if (isset(self::$languages->{$key})) {
+            $item = self::$languages->{$key};
+            if (is_array($item)) {
+                if ($value_key !== null && isset($item[$value_key])) {
+                    return $item[$value_key];
+                }
+            } else {
+                return $item;
+            }
         }
 
-        return $result;
+        return $default === null ? $key : $default;
     }
 
     /**
@@ -358,7 +368,7 @@ final class Language extends \Kotchasan\KBase
     public static function trans($content)
     {
         return preg_replace_callback('/{LNG_([^}]+)}/', function ($match) {
-            return Language::get($match[1]);
+            return static::get($match[1]);
         }, $content);
     }
 
