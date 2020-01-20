@@ -126,6 +126,29 @@ INSERT INTO `{prefix}_vehicles` (`id`, `number`, `color`, `detail`, `published`,
 (1, 'นม 6', '#304FFE', 'พร้อมเครื่องเสียงชุดใหญ่', 1, 50),
 (2, 'บจ 888', '#4A148C', '', 1, 13),
 (3, 'กข 1234', '#B71C1C', '', 1, 4);
+
+--
+-- Table structure for table `{prefix}_vehicles_meta`
+--
+
+CREATE TABLE `{prefix}_vehicles_meta` (
+  `vehicle_id` int(11) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `value` varchar(150) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `{prefix}_vehicles_meta`
+--
+
+INSERT INTO `{prefix}_vehicles_meta` (`vehicle_id`, `name`, `value`) VALUES
+(3, 'car_brand', '1'),
+(3, 'car_type', '3'),
+(2, 'car_brand', '2'),
+(2, 'car_type', '7'),
+(1, 'car_brand', '8'),
+(1, 'car_type', '9');
+
 -- --------------------------------------------------------
 
 --
@@ -157,28 +180,6 @@ CREATE TABLE `{prefix}_user` (
   `active` tinyint(1) DEFAULT 1,
   `social` tinyint(1) DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Table structure for table `{prefix}_vehicles_meta`
---
-
-CREATE TABLE `{prefix}_vehicles_meta` (
-  `vehicle_id` int(11) NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `value` varchar(150) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `{prefix}_vehicles_meta`
---
-
-INSERT INTO `{prefix}_vehicles_meta` (`vehicle_id`, `name`, `value`) VALUES
-(3, 'car_brand', '1'),
-(3, 'car_type', '3'),
-(2, 'car_brand', '2'),
-(2, 'car_type', '7'),
-(1, 'car_brand', '8'),
-(1, 'car_type', '9');
 
 --
 -- Indexes for table `{prefix}_category`
