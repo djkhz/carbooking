@@ -1,7 +1,6 @@
 <?php
 /* language/th.php */
 return array(
-  '13 digit identification number' => 'เลขประจำตัวประชาชน 13 หลัก',
   'Add New' => 'เพิ่ม',
   'Address' => 'ที่อยู่',
   'Address details' => 'รายละเอียดที่อยู่',

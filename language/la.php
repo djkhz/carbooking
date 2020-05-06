@@ -1,12 +1,10 @@
 <?php
 /* language/la.php */
 return array(
-  '13 digit identification number' => 'ເລກປະຈຳຕົວ 9 ຕົວເລກ',
   'Add New' => 'ເພີ່ມ',
   'Address' => 'ທີ່ຢູ່',
   'Address details' => 'ລາຍລະອຽດທີ່ຢູ່',
   'Administrator status It is of utmost importance to do everything' => 'ສະຖານະຜູ້ເບິ່ງແຍງລະບົບມີຄວາມສຳຄັນສຸງທີ່ສຸດສາມາດເຮັດໄດ້ທຸກຢ່າງ',
-  'age' => 'ອາຍຸ',
   'All :count entries, displayed :start to :end, page :page of :total pages' => 'ທັງໝົດ :count ລາຍການ, ສະແດງ :start ເຖິງ :end, ໜ້າທີ່ :page ຈາກທັງໝົດ:total ໜ້າ',
   'All cars' => 'ລົດທັງຫມົດ',
   'all items' => 'ທັງໝົດ',
