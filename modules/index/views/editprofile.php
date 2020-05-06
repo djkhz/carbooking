@@ -16,7 +16,7 @@ use Kotchasan\Http\Request;
 use Kotchasan\Language;
 
 /**
- * module=editprofile.
+ * module=editprofile
  *
  * @author Goragod Wiriya <admin@goragod.com>
  *
@@ -128,7 +128,6 @@ class View extends \Gcms\View
             'label' => '{LNG_Identification No.}',
             'maxlength' => 13,
             'value' => $user['id_card'],
-            'validator' => array('keyup,change', 'checkIdcard'),
         ));
         // address
         $fieldset->add('text', array(

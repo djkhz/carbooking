@@ -91,7 +91,9 @@ class Model extends \Kotchasan\Model
                         // ไม่ได้กรอก begin_date
                         $ret['ret_begin_date'] = 'Please fill in';
                     }
-                    if (empty($begin_time)) {
+                    if (preg_match('/^([0-9]{2,2}:[0-9]{2,2}):[0-9]{2,2}$/', $begin_time, $match)) {
+                        $begin_time = $match[1].':01';
+                    } else {
                         // ไม่ได้กรอก begin_time
                         $ret['ret_begin_time'] = 'Please fill in';
                     }

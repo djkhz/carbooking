@@ -33,7 +33,7 @@ class Controller extends \Gcms\Controller
     public function render(Request $request)
     {
         // ข้อความ title bar
-        $this->title = Language::trans('{LNG_List of} {LNG_Car}');
+        $this->title = Language::trans('{LNG_List of} {LNG_Vehicle}');
         // เลือกเมนู
         $this->menu = 'vehicles';
         // แสดงผล
@@ -45,7 +45,7 @@ class Controller extends \Gcms\Controller
             'class' => 'breadcrumbs',
         ));
         $ul = $breadcrumbs->add('ul');
-        $ul->appendChild('<li><span class="icon-home">{LNG_Car}</span></li>');
+        $ul->appendChild('<li><span class="icon-home">{LNG_Vehicle}</span></li>');
         $ul->appendChild('<li><span>{LNG_List of}</span></li>');
         $section->add('header', array(
             'innerHTML' => '<h2 class="icon-shipping">'.$this->title.'</h2>',

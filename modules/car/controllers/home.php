@@ -32,7 +32,7 @@ class Controller extends \Gcms\Controller
     public static function addCard(Request $request, $card, $login)
     {
         \Index\Home\Controller::renderCard($card, 'icon-calendar', '{LNG_Book a vehicle}', number_format(\Car\Home\Model::getNew()), '{LNG_Booking today}', 'index.php?module=car-booking');
-        \Index\Home\Controller::renderCard($card, 'icon-shipping', '{LNG_Car}', number_format(\Car\Home\Model::cars()), '{LNG_All cars}', 'index.php?module=car-vehicles');
+        \Index\Home\Controller::renderCard($card, 'icon-shipping', '{LNG_Vehicle}', number_format(\Car\Home\Model::cars()), '{LNG_All cars}', 'index.php?module=car-vehicles');
     }
 
     /**

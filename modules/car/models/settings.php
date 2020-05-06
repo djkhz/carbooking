@@ -39,6 +39,7 @@ class Model extends \Kotchasan\KBase
                 $config = Config::load(ROOT_PATH.'settings/config.php');
                 $config->chauffeur_stats = $request->post('chauffeur_stats')->toInt();
                 $config->car_w = max(100, $request->post('car_w')->toInt());
+                $config->car_approving = $request->post('car_approving')->toInt();
                 // save config
                 if (Config::save($config, ROOT_PATH.'settings/config.php')) {
                     // คืนค่า

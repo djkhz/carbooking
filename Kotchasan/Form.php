@@ -223,6 +223,21 @@ class Form extends \Kotchasan\KBase
      *
      * @return \static
      */
+    public static function integer($attributes = array())
+    {
+        $obj = new static();
+        $obj->tag = 'input';
+        $attributes['type'] = 'integer';
+        $obj->attributes = $attributes;
+
+        return $obj;
+    }
+
+    /**
+     * @param array $attributes
+     *
+     * @return \static
+     */
     public static function password($attributes = array())
     {
         $obj = new static();
@@ -468,7 +483,7 @@ class Form extends \Kotchasan\KBase
             } else {
                 if (isset($dataPreview)) {
                     $input .= '<div class="file-preview" id="'.$dataPreview.'">';
-                    $input .= isset($previewSrc) ? '<div class="file-thumb" style="background-image:url('.$previewSrc.')"></div>' : '';
+                    $input .= isset($previewSrc) ? '<a href="'.$previewSrc.'" target="preview" class="file-thumb" style="background-image:url('.$previewSrc.')"></a>' : '';
                     $input .= '</div>';
                 }
                 if (isset($label) && isset($id)) {

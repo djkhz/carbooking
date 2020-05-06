@@ -33,8 +33,8 @@ class Controller extends \Kotchasan\KBase
      */
     public static function execute(Request $request, $menu, $login)
     {
-        $menu->addTopLvlMenu('vehicles', '{LNG_List of} {LNG_Car}', 'index.php?module=car-vehicles', null, 'member');
-        $menu->addTopLvlMenu('car', '{LNG_Car}', null, array(
+        $menu->addTopLvlMenu('vehicles', '{LNG_List of} {LNG_Vehicle}', 'index.php?module=car-vehicles', null, 'member');
+        $menu->addTopLvlMenu('car', '{LNG_Vehicle}', null, array(
             array(
                 'text' => '{LNG_My Booking}',
                 'url' => 'index.php?module=car',
@@ -52,11 +52,11 @@ class Controller extends \Kotchasan\KBase
                     'url' => 'index.php?module=car-settings',
                 ),
                 array(
-                    'text' => '{LNG_List of} {LNG_Car}',
+                    'text' => '{LNG_List of} {LNG_Vehicle}',
                     'url' => 'index.php?module=car-setup',
                 ),
                 array(
-                    'text' => '{LNG_Add New} {LNG_Car}',
+                    'text' => '{LNG_Add New} {LNG_Vehicle}',
                     'url' => 'index.php?module=car-write',
                 ),
             );
@@ -72,7 +72,7 @@ class Controller extends \Kotchasan\KBase
                     'url' => 'index.php?module=car-categories&amp;type='.$type,
                 );
             }
-            $menu->add('settings', '{LNG_Car}', null, $submenus);
+            $menu->add('settings', '{LNG_Vehicle}', null, $submenus);
         }
         if (Login::checkPermission($login, 'can_approve_car')) {
             $submenus = array();
@@ -82,7 +82,7 @@ class Controller extends \Kotchasan\KBase
                     'url' => 'index.php?module=car-report&amp;status='.$type,
                 );
             }
-            $menu->addTopLvlMenu('report', '{LNG_Report}', null, $submenus, 'signout');
+            $menu->add('report', '{LNG_Vehicle}', null, $submenus);
         }
     }
 

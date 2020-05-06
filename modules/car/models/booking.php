@@ -38,12 +38,10 @@ class Model extends \Kotchasan\Model
     public static function get($id, $vehicle_id, $login)
     {
         if ($login) {
-            // Model
-            $model = new static();
             if (empty($id)) {
                 // ใหม่
                 if ($vehicle_id > 0) {
-                    return $model->db()->createQuery()
+                    return static::createQuery()
                         ->from('vehicles')
                         ->where(array('id', $vehicle_id))
                         ->first('0 id', 'id vehicle_id', '0 status', '0 today', (int) $login['id'].' member_id', "'$login[phone]' phone");
@@ -60,7 +58,7 @@ class Model extends \Kotchasan\Model
             } else {
                 // แก้ไข อ่านรายการที่เลือก
                 $sql = Sql::create('(CASE WHEN NOW() BETWEEN V.`begin` AND V.`end` THEN 1 WHEN NOW() > V.`end` THEN 2 ELSE 0 END) AS `today`');
-                $query = $model->db()->createQuery()
+                $query = static::createQuery()
                     ->from('car_reservation V')
                     ->join('user U', 'INNER', array('U.id', 'V.member_id'))
                     ->where(array('V.id', $id));
@@ -125,7 +123,9 @@ class Model extends \Kotchasan\Model
                         // ไม่ได้กรอก begin_date
                         $ret['ret_begin_date'] = 'Please fill in';
                     }
-                    if (empty($begin_time)) {
+                    if (preg_match('/^([0-9]{2,2}:[0-9]{2,2}):[0-9]{2,2}$/', $begin_time, $match)) {
+                        $begin_time = $match[1].':01';
+                    } else {
                         // ไม่ได้กรอก begin_time
                         $ret['ret_begin_time'] = 'Please fill in';
                     }

@@ -28,6 +28,9 @@ class View extends \Gcms\View
      * @var array
      */
     private $publisheds;
+    /**
+     * @var mixed
+     */
     private $car_select;
     /**
      * @var object
@@ -49,7 +52,7 @@ class View extends \Gcms\View
         $this->car_select = Language::get('CAR_SELECT', array());
         $headers = array(
             'number' => array(
-                'text' => '{LNG_Car number}',
+                'text' => '{LNG_Vehicle number}',
                 'sort' => 'number',
             ),
             'id' => array(

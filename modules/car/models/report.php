@@ -42,10 +42,24 @@ class Model extends \Kotchasan\Model
         if ($index['chauffeur'] > -2) {
             $where[] = array('V.chauffeur', $index['chauffeur']);
         }
-        $sql = Sql::create('(CASE WHEN NOW() BETWEEN V.`begin` AND V.`end` THEN 1 WHEN NOW() > V.`end` THEN 2 ELSE 0 END) AS `today`');
+        $today = date('Y-m-d H:i:s');
 
         return static::createQuery()
-            ->select('V.id', 'V.detail', 'V.vehicle_id', 'R.number', 'U.name contact', 'U.phone', 'V.begin', 'V.end', 'V.chauffeur', 'V.create_date', 'V.reason', $sql)
+            ->select(
+                'V.id',
+                'V.detail',
+                'V.vehicle_id',
+                'R.number',
+                'U.name contact',
+                'U.phone',
+                'V.begin',
+                'V.end',
+                'V.chauffeur',
+                'V.create_date',
+                'V.reason',
+                Sql::create('(CASE WHEN "'.$today.'" BETWEEN V.`begin` AND V.`end` THEN 1 WHEN "'.$today.'" > V.`end` THEN 2 ELSE 0 END) AS `today`'),
+                Sql::create('TIMESTAMPDIFF(MINUTE,"'.$today.'",V.`begin`) AS `remain`')
+            )
             ->from('car_reservation V')
             ->join('vehicles R', 'INNER', array('R.id', 'V.vehicle_id'))
             ->join('user U', 'INNER', array('U.id', 'V.member_id'))

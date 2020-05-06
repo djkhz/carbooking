@@ -61,7 +61,7 @@ class View extends \Gcms\View
             /* ฟังก์ชั่นจัดรูปแบบการแสดงผลแถวของตาราง */
             'onRow' => array($this, 'onRow'),
             /* คอลัมน์ที่ไม่ต้องแสดงผล */
-            'hideColumns' => array('id', 'today'),
+            'hideColumns' => array('id', 'today', 'remain'),
             /* คอลัมน์ที่สามารถค้นหาได้ */
             'searchColumns' => array('name', 'contact', 'phone'),
             /* ตั้งค่าการกระทำของของตัวเลือกต่างๆ ด้านล่างตาราง ซึ่งจะใช้ร่วมกับการขีดถูกเลือกแถว */
@@ -81,7 +81,7 @@ class View extends \Gcms\View
             'filters' => array(
                 array(
                     'name' => 'vehicle_id',
-                    'text' => '{LNG_Car}',
+                    'text' => '{LNG_Vehicle}',
                     'options' => array(0 => '{LNG_all items}')+\Car\Vehicles\Model::toSelect(),
                     'value' => $params['vehicle_id'],
                 ),
@@ -102,7 +102,7 @@ class View extends \Gcms\View
                     'class' => 'center',
                 ),
                 'number' => array(
-                    'text' => '{LNG_Car number}',
+                    'text' => '{LNG_Vehicle number}',
                     'sort' => 'number',
                 ),
                 'contact' => array(
@@ -211,10 +211,16 @@ class View extends \Gcms\View
      *
      * @return array
      */
-    public function onCreateButton($btn, $attributes, $items)
+    public function onCreateButton($btn, $attributes, $item)
     {
-        if ($btn == 'edit' && in_array($items['today'], array(1, 2))) {
-            return false;
+        if ($btn == 'edit') {
+            if (empty(self::$cfg->car_approving) && $item['today'] == 2) {
+                return false;
+            } elseif (self::$cfg->car_approving == 1 && $item['remain'] < 0) {
+                return false;
+            } else {
+                return $attributes;
+            }
         } else {
             return $attributes;
         }

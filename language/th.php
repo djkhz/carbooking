@@ -1,6 +1,7 @@
 <?php
 /* language/th.php */
 return array(
+  '13 digit identification number' => 'เลขประจำตัวประชาชน 13 หลัก',
   'Add New' => 'เพิ่ม',
   'Address' => 'ที่อยู่',
   'Address details' => 'รายละเอียดที่อยู่',
@@ -8,6 +9,12 @@ return array(
   'All :count entries, displayed :start to :end, page :page of :total pages' => 'ทั้งหมด :count รายการ, แสดง :start ถึง :end, หน้าที่ :page จากทั้งหมด :total หน้า',
   'All cars' => 'ยานพาหนะทั้งหมด',
   'all items' => 'ทั้งหมด',
+  'APPROVING_RESERVATIONS' => array(
+    0 => 'ก่อนหมดเวลาจอง',
+    1 => 'ก่อนถึงเวลาจอง',
+    2 => 'ตลอดเวลา'
+  ),
+  'Approving/editing reservations' => 'การอนุมัติ/แก้ไข การจอง',
   'Attendees number' => 'จำนวนผู้เข้าประชุม',
   'Authentication require' => 'การตรวจสอบความถูกต้อง',
   'Background color' => 'สีพื้นหลัง',
@@ -31,8 +38,6 @@ return array(
   'Can not be performed this request. Because they do not find the information you need or you are not allowed' => 'ไม่สามารถดำเนินการตามที่ร้องขอได้ เนื่องจากไม่พบข้อมูลที่ต้องการ หรือ คุณไม่มีสิทธิ์',
   'Cancel' => 'ยกเลิก',
   'Canceled successfully' => 'ยกเลิกเรียบร้อย',
-  'Car' => 'ยานพาหนะ',
-  'Car number' => 'เลขทะเบียน',
   'CAR_BOOKING_STATUS' => array(
     0 => 'รอตรวจสอบ',
     1 => 'อนุมัติ',
@@ -113,7 +118,7 @@ return array(
   'Image' => 'รูปภาพ',
   'Image size is in pixels' => 'ขนาดของรูปภาพเป็นพิกเซล',
   'Import' => 'นำเข้า',
-  'Incorrect :name' => ':name ไม่ถูกต้อง',
+  'Invalid :name' => ':name ไม่ถูกต้อง',
   'Key' => 'คีย์',
   'Language' => 'ภาษา',
   'Last login' => 'เข้าระบบล่าสุด',
@@ -254,6 +259,8 @@ return array(
   'Username' => 'ชื่อผู้ใช้',
   'Username for the mail server. (To change, enter a new value.)' => 'ชื่อผู้ใช้ของเมล์เซิร์ฟเวอร์ (ต้องการเปลี่ยน ให้กรอก)',
   'Users' => 'สมาชิก',
+  'Vehicle' => 'ยานพาหนะ',
+  'Vehicle number' => 'เลขทะเบียน',
   'Vehicle usage details' => 'รายละเอียดการขอใช้',
   'Vehicles cannot be used at the selected time' => 'ยานพาหนะไม่สามารถใช้งานได้ในเวลาที่เลือก',
   'Website title' => 'ชื่อเว็บ',

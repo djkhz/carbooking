@@ -32,12 +32,12 @@ class View extends \Gcms\View
     public function vehicle($index)
     {
         $content = '<article class="modal_detail">';
-        $content .= '<header><h1 class="cuttext">{LNG_Details of} {LNG_Car}</h1></header>';
+        $content .= '<header><h1 class="cuttext">{LNG_Details of} {LNG_Vehicle}</h1></header>';
         if (is_file(ROOT_PATH.DATA_FOLDER.'car/'.$index->id.'.jpg')) {
             $content .= '<figure class="center"><img src="'.WEB_URL.DATA_FOLDER.'car/'.$index->id.'.jpg"></figure>';
         }
         $content .= '<table class="border data fullwidth"><tbody>';
-        $content .= '<tr><th>{LNG_Car number}</th><td><span class="term" style="background-color:'.$index->color.'">'.$index->number.'</span></td></tr>';
+        $content .= '<tr><th>{LNG_Vehicle number}</th><td><span class="term" style="background-color:'.$index->color.'">'.$index->number.'</span></td></tr>';
         $category = \Car\Category\Model::init();
         foreach (Language::get('CAR_SELECT', array()) as $key => $label) {
             if (isset($index->{$key})) {
@@ -71,7 +71,7 @@ class View extends \Gcms\View
             $content .= ' <a href="tel:'.$index->phone.'"><span class="icon-phone">'.$index->phone.'</span></a>';
         }
         $content .= '</td></tr>';
-        $content .= '<tr><th>{LNG_Car number}</th><td><span class="term" style="background-color:'.$index->color.'">'.$index->number.'</span></td></tr>';
+        $content .= '<tr><th>{LNG_Vehicle number}</th><td><span class="term" style="background-color:'.$index->color.'">'.$index->number.'</span></td></tr>';
         foreach (Language::get('CAR_SELECT', array()) as $key => $label) {
             if (isset($index->{$key})) {
                 $content .= '<tr><th>'.$label.'</th><td>'.$category->get($key, $index->{$key}).'</td></tr>';

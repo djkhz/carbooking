@@ -3,7 +3,7 @@
 /* config.php */
 
 return array(
-    'version' => '2.1.1',
+    'version' => '2.2.0',
     'web_title' => 'CRS',
     'web_description' => 'Car Reservation Service',
     'timezone' => 'Asia/Bangkok',
@@ -23,4 +23,5 @@ return array(
     'welcome_email' => 0,
     'car_w' => 600,
     'chauffeur_stats' => 2,
+    'booking_approving' => 0,
 );

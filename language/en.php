@@ -1,6 +1,11 @@
 <?php
 /* language/en.php */
 return array(
+  'APPROVING_RESERVATIONS' => array(
+    0 => 'End of booking',
+    1 => 'Before booking time',
+    2 => 'All time'
+  ),
   'BOOLEANS' => array(
     0 => 'Disable',
     1 => 'Enabled'

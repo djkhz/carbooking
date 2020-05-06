@@ -43,14 +43,14 @@ class View extends \Gcms\View
             'token' => true,
         ));
         $fieldset = $form->add('fieldset', array(
-            'title' => '{LNG_Details of} {LNG_Car}',
+            'title' => '{LNG_Details of} {LNG_Vehicle}',
         ));
         // number
         $fieldset->add('text', array(
             'id' => 'number',
             'labelClass' => 'g-input icon-number',
             'itemClass' => 'item',
-            'label' => '{LNG_Car number}',
+            'label' => '{LNG_Vehicle number}',
             'maxlength' => 20,
             'value' => isset($index->number) ? $index->number : '',
         ));

@@ -48,7 +48,7 @@ class Controller extends \Gcms\Controller
                 'class' => 'breadcrumbs',
             ));
             $ul = $breadcrumbs->add('ul');
-            $ul->appendChild('<li><span class="icon-shipping">{LNG_Car}</span></li>');
+            $ul->appendChild('<li><span class="icon-shipping">{LNG_Vehicle}</span></li>');
             $ul->appendChild('<li><span>{LNG_Booking}</span></li>');
             $section->add('header', array(
                 'innerHTML' => '<h2 class="icon-list">'.$this->title.'</h2>',

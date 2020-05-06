@@ -81,7 +81,7 @@ class View extends \Gcms\View
                     'class' => 'center',
                 ),
                 'number' => array(
-                    'text' => '{LNG_Car}',
+                    'text' => '{LNG_Vehicle}',
                 ),
                 'begin' => array(
                     'text' => '{LNG_Date}',

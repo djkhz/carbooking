@@ -44,14 +44,14 @@ class View extends \Gcms\View
             'token' => true,
         ));
         $fieldset = $form->add('fieldset', array(
-            'title' => '{LNG_Details of} {LNG_Car}',
+            'title' => '{LNG_Details of} {LNG_Vehicle}',
         ));
         // vehicle_id
         $fieldset->add('select', array(
             'id' => 'vehicle_id',
             'labelClass' => 'g-input icon-shipping',
             'itemClass' => 'item',
-            'label' => '{LNG_Car}',
+            'label' => '{LNG_Vehicle}',
             'options' => \Car\Vehicles\Model::toSelect(),
             'value' => isset($index->vehicle_id) ? $index->vehicle_id : 0,
         ));

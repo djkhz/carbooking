@@ -34,7 +34,7 @@ class Controller extends \Gcms\Controller
     public function render(Request $request)
     {
         // ข้อความ title bar
-        $this->title = Language::get('Car');
+        $this->title = Language::get('Vehicle');
         // เลือกเมนู
         $this->menu = 'settings';
         // สมาชิก

@@ -50,7 +50,7 @@ class View extends \Gcms\View
                 'class' => 'center',
             ),
             'number' => array(
-                'text' => '{LNG_Car number}',
+                'text' => '{LNG_Vehicle number}',
                 'sort' => 'number',
             ),
         );

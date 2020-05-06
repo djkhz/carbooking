@@ -34,7 +34,7 @@ class Controller extends \Gcms\Controller
     public function render(Request $request)
     {
         // ข้อความ title bar
-        $this->title = Language::get('Car');
+        $this->title = Language::get('Vehicle');
         // เลือกเมนู
         $this->menu = 'report';
         // ตรวจสอบรายการที่เลือก
@@ -52,7 +52,7 @@ class Controller extends \Gcms\Controller
                 'class' => 'breadcrumbs',
             ));
             $ul = $breadcrumbs->add('ul');
-            $ul->appendChild('<li><span class="icon-shipping">{LNG_Car}</span></li>');
+            $ul->appendChild('<li><span class="icon-shipping">{LNG_Vehicle}</span></li>');
             $ul->appendChild('<li><a href="{BACKURL?module=car-setup&id=0}">{LNG_Book a vehicle}</a></li>');
             $ul->appendChild('<li><span>{LNG_Detail}</span></li>');
             $section->add('header', array(

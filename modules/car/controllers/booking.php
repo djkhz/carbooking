@@ -55,7 +55,7 @@ class Controller extends \Gcms\Controller
                 'class' => 'breadcrumbs',
             ));
             $ul = $breadcrumbs->add('ul');
-            $ul->appendChild('<li><span class="icon-shipping">{LNG_Car}</span></li>');
+            $ul->appendChild('<li><span class="icon-shipping">{LNG_Vehicle}</span></li>');
             $ul->appendChild('<li><a href="{BACKURL?module=car-setup&id=0}">{LNG_Book a vehicle}</a></li>');
             $ul->appendChild('<li><span>'.$title.'</span></li>');
             $section->add('header', array(

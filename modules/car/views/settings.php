@@ -11,6 +11,7 @@
 namespace Car\Settings;
 
 use Kotchasan\Html;
+use Kotchasan\Language;
 
 /**
  * module=car-settings.
@@ -51,6 +52,15 @@ class View extends \Gcms\View
             'options' => self::$cfg->member_status,
             'value' => isset(self::$cfg->chauffeur_stats) ? self::$cfg->chauffeur_stats : 2,
         ));
+        // car_approving
+        $fieldset->add('select', array(
+            'id' => 'car_approving',
+            'labelClass' => 'g-input icon-write',
+            'itemClass' => 'item',
+            'label' => '{LNG_Approving/editing reservations}',
+            'options' => Language::get('APPROVING_RESERVATIONS'),
+            'value' => isset(self::$cfg->car_approving) ? self::$cfg->car_approving : 0,
+        ));
         $fieldset = $form->add('fieldset', array(
             'title' => '{LNG_size of} {LNG_Image}',
         ));
@@ -71,6 +81,7 @@ class View extends \Gcms\View
             'class' => 'button save large icon-save',
             'value' => '{LNG_Save}',
         ));
+        // คืนค่า HTML
 
         return $form->render();
     }
